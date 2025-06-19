@@ -6,7 +6,8 @@ export type {
   ResumeEducation, 
   ResumeProject, 
   ResumeSkills,
-  ResumeCustom 
+  ResumeCustom,
+  FeaturedSkill
 } from './lib/redux/types.js';
 export type { 
   TextItem, 

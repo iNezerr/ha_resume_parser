@@ -36,7 +36,7 @@ const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileUrl = URL.createObjectURL(file);
     const resume = await parseResumeFromPdf(fileUrl);
     console.log(resume);
-    
+  
     // Don't forget to revoke the URL when done
     URL.revokeObjectURL(fileUrl);
   }
@@ -50,12 +50,14 @@ const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 Parses a resume from a PDF file URL and returns structured resume data.
 
 **Parameters:**
+
 - `fileUrl` - URL or path to the PDF file
 
 **Returns:** Promise that resolves to a `Resume` object containing:
+
 - `profile` - Personal information (name, email, phone, location, summary)
 - `workExperiences` - Array of work experience entries
-- `educations` - Array of education entries  
+- `educations` - Array of education entries
 - `projects` - Array of project entries
 - `skills` - Featured skills with ratings and descriptions
 - `custom` - Additional custom sections
@@ -125,8 +127,17 @@ interface ResumeProject {
   descriptions: string[];
 }
 
+interface FeaturedSkill {
+  skill: string;
+  rating: number;
+}
+
 interface ResumeSkills {
   featuredSkills: FeaturedSkill[];
+  descriptions: string[];
+}
+
+interface ResumeCustom {
   descriptions: string[];
 }
 ```
@@ -138,17 +149,25 @@ The parser follows a 4-step process:
 1. **PDF Reading** - Extracts text items from PDF using pdfjs-dist
 2. **Line Grouping** - Groups text items into logical lines
 3. **Section Detection** - Organizes lines into resume sections
-4. **Data Extraction** - Extracts structured data from each section
+4. **Data Extraction** - Extracts structured data from each section using a feature scoring system
+
+The extraction engine uses a feature scoring system where each resume attribute has custom feature sets. Each feature set consists of a feature matching function and a score. The text item with the highest computed feature score is identified as the extracted resume attribute.
 
 ## Requirements
 
 - Node.js 16+
 - Works in both Node.js and browser environments
-- For React projects, requires React 18+
+- PDF files must be accessible via URL or file path
 
 ## Browser Compatibility
 
 This library uses `pdfjs-dist` which works in modern browsers. Make sure your bundler (Webpack, Vite, etc.) can handle the PDF.js worker.
+
+## Dependencies
+
+- `pdfjs-dist` - For PDF text extraction
+- `@reduxjs/toolkit` - For state management types
+- `react-redux` - For Redux integration types
 
 ## License
 
