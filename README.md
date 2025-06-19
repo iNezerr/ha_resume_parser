@@ -1,54 +1,163 @@
-# React + TypeScript + Vite
+# Resume Parser TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A TypeScript library for parsing resumes from PDF files and extracting structured data.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm install resume-parser-ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```typescript
+import { parseResumeFromPdf } from 'resume-parser-ts';
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+// Parse a PDF resume from a file URL
+const fileUrl = 'path/to/resume.pdf';
+const resume = await parseResumeFromPdf(fileUrl);
+
+console.log(resume.profile.name);
+console.log(resume.profile.email);
+console.log(resume.workExperiences);
+console.log(resume.educations);
+console.log(resume.projects);
+console.log(resume.skills);
 ```
+
+### Browser Usage with File Input
+
+```typescript
+import { parseResumeFromPdf } from 'resume-parser-ts';
+
+const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const file = event.target.files?.[0];
+  if (file) {
+    const fileUrl = URL.createObjectURL(file);
+    const resume = await parseResumeFromPdf(fileUrl);
+    console.log(resume);
+    
+    // Don't forget to revoke the URL when done
+    URL.revokeObjectURL(fileUrl);
+  }
+};
+```
+
+## API
+
+### `parseResumeFromPdf(fileUrl: string): Promise<Resume>`
+
+Parses a resume from a PDF file URL and returns structured resume data.
+
+**Parameters:**
+- `fileUrl` - URL or path to the PDF file
+
+**Returns:** Promise that resolves to a `Resume` object containing:
+- `profile` - Personal information (name, email, phone, location, summary)
+- `workExperiences` - Array of work experience entries
+- `educations` - Array of education entries  
+- `projects` - Array of project entries
+- `skills` - Featured skills with ratings and descriptions
+- `custom` - Additional custom sections
+
+**Note:** The parser algorithm works best with single-column resumes in English.
+
+## Types
+
+The library exports comprehensive TypeScript types:
+
+```typescript
+import type { 
+  Resume,
+  ResumeProfile,
+  ResumeWorkExperience,
+  ResumeEducation,
+  ResumeProject,
+  ResumeSkills,
+  ResumeCustom,
+  FeaturedSkill,
+  TextItem,
+  TextItems,
+  Line,
+  Lines
+} from 'resume-parser-ts';
+```
+
+### Resume Structure
+
+```typescript
+interface Resume {
+  profile: ResumeProfile;
+  workExperiences: ResumeWorkExperience[];
+  educations: ResumeEducation[];
+  projects: ResumeProject[];
+  skills: ResumeSkills;
+  custom: ResumeCustom;
+}
+
+interface ResumeProfile {
+  name: string;
+  email: string;
+  phone: string;
+  url: string;
+  summary: string;
+  location: string;
+}
+
+interface ResumeWorkExperience {
+  company: string;
+  jobTitle: string;
+  date: string;
+  descriptions: string[];
+}
+
+interface ResumeEducation {
+  school: string;
+  degree: string;
+  date: string;
+  gpa: string;
+  descriptions: string[];
+}
+
+interface ResumeProject {
+  project: string;
+  date: string;
+  descriptions: string[];
+}
+
+interface ResumeSkills {
+  featuredSkills: FeaturedSkill[];
+  descriptions: string[];
+}
+```
+
+## How It Works
+
+The parser follows a 4-step process:
+
+1. **PDF Reading** - Extracts text items from PDF using pdfjs-dist
+2. **Line Grouping** - Groups text items into logical lines
+3. **Section Detection** - Organizes lines into resume sections
+4. **Data Extraction** - Extracts structured data from each section
+
+## Requirements
+
+- Node.js 16+
+- Works in both Node.js and browser environments
+- For React projects, requires React 18+
+
+## Browser Compatibility
+
+This library uses `pdfjs-dist` which works in modern browsers. Make sure your bundler (Webpack, Vite, etc.) can handle the PDF.js worker.
+
+## License
+
+MIT
+
+## Author
+
+Ebenezer Agbekeye
+
+## Keywords
+
+resume, parser, pdf, typescript, cv, document-parsing, text-extraction

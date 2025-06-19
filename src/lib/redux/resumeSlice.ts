@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "lib/redux/store";
+import type { RootState } from "../../lib/redux/store";
 import type {
   FeaturedSkill,
   Resume,
@@ -8,8 +8,8 @@ import type {
   ResumeProject,
   ResumeSkills,
   ResumeWorkExperience,
-} from "lib/redux/types";
-import type { ShowForm } from "lib/redux/settingsSlice";
+} from "../../lib/redux/types";
+import type { ShowForm } from "../../lib/redux/settingsSlice";
 
 export const initialProfile: ResumeProfile = {
   name: "",
