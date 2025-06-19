@@ -1,0 +1,112 @@
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  color: #213547;
+  margin-bottom: 10px;
+}
+
+.upload-section {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+}
+
+.upload-section input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.error {
+  color: #ff4444;
+  font-weight: bold;
+}
+
+.resume-display {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.resume-display h2 {
+  color: #213547;
+  border-bottom: 2px solid #646cff;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.resume-display section {
+  margin-bottom: 30px;
+}
+
+.resume-display h3 {
+  color: #646cff;
+  margin-bottom: 15px;
+}
+
+.profile p {
+  margin: 8px 0;
+}
+
+.experience-item,
+.education-item,
+.project-item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border-left: 4px solid #646cff;
+}
+
+.experience-item h4,
+.education-item h4,
+.project-item h4 {
+  margin: 0 0 8px 0;
+  color: #213547;
+}
+
+.featured-skills,
+.skill-descriptions {
+  background: white;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+}
+
+.featured-skills h4,
+.skill-descriptions h4 {
+  margin: 0 0 10px 0;
+  color: #213547;
+}
+
+details {
+  margin-top: 20px;
+}
+
+details summary {
+  cursor: pointer;
+  padding: 10px;
+  background: #646cff;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+details pre {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 4px;
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+}

@@ -175,7 +175,7 @@ MIT
 
 ## Author
 
-Ebenezer Agbekeye
+[Ebenezer Agbekeye](https://www.linkedin.com/in/nezeroriginal/)
 
 ## Keywords
 
