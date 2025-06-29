@@ -234,6 +234,3 @@ MIT
 
 [Ebenezer Agbekeye](https://www.linkedin.com/in/nezeroriginal/)
 
-## Keywords
-
-resume, parser, pdf, typescript, cv, document-parsing, text-extraction
