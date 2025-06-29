@@ -19,7 +19,10 @@
     "resume",
     "parser",
     "pdf",
-    "typescript"
+    "typescript",
+    "cv",
+    "document-parsing",
+    "text-extraction"
   ],
   "author": "Ebenezer Agbekeye",
   "license": "MIT",
