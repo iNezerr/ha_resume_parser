@@ -169,6 +169,63 @@ This library uses `pdfjs-dist` which works in modern browsers. Make sure your bu
 - `@reduxjs/toolkit` - For state management types
 - `react-redux` - For Redux integration types
 
+## Contributing
+
+🤝 **I need your help!** This project is actively looking for contributors to improve and enhance the resume parsing capabilities.
+
+### How to Contribute
+
+1. **Fork the repository** - Click the "Fork" button at the top right of this page
+2. **Clone your fork** locally:
+   ```bash
+   git clone https://github.com/iNezerr/ha_resume_parser.git
+   cd ha_resume_parser
+   ```
+3. **Create a new branch** for your feature or bug fix:
+   ```bash
+   git checkout -b feature/your-feature-name
+   # or
+   git checkout -b fix/bug-description
+   ```
+4. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+5. **Make your changes** and test them:
+   ```bash
+   npm run build
+   npm run lint
+   ```
+6. **Commit your changes**:
+   ```bash
+   git add .
+   git commit -m "Add: your descriptive commit message"
+   ```
+7. **Push to your fork**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+8. **Create a Pull Request** - Go to the original repository and click "New Pull Request"
+9. **Tag me** (@nezeroriginal) in your PR description so I get notified
+
+### Areas Where Help is Needed
+
+- 🐛 **Bug fixes** - Improve parsing accuracy for edge cases
+- 🚀 **Feature enhancements** - Add support for more resume formats
+- 📝 **Documentation** - Improve examples and API documentation  
+- 🧪 **Testing** - Add more test cases and improve coverage
+- 🎨 **UI/UX** - Build the demo application
+- 🌍 **Internationalization** - Support for non-English resumes
+- ⚡ **Performance** - Optimize parsing speed and accuracy
+
+### Reporting Issues
+
+Found a bug or have a suggestion? Please [open an issue](https://github.com/iNezerr/ha_resume_parser/issues) with:
+- Clear description of the problem
+- Steps to reproduce
+- Expected vs actual behavior
+- Sample PDF (if applicable - remove personal info first!)
+
 ## License
 
 MIT
