@@ -1,6 +1,6 @@
 {
   "name": "resume-parser-ts",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A TypeScript library for parsing resumes from PDF files",  "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",  "exports": {

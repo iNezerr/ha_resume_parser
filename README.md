@@ -178,7 +178,7 @@ This library uses `pdfjs-dist` which works in modern browsers. Make sure your bu
 1. **Fork the repository** - Click the "Fork" button at the top right of this page
 2. **Clone your fork** locally:
    ```bash
-   git clone https://github.com/iNezerr/ha_resume_parser.git
+   git clone https://github.com/your_username/ha_resume_parser.git
    cd ha_resume_parser
    ```
 3. **Create a new branch** for your feature or bug fix:
